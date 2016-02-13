@@ -1,0 +1,7 @@
+epc <- read.table("household_power_consumption.txt",sep=";", header = TRUE)
+epc$Date <- as.Date(as.character(epc$Date),format="%d/%m/%Y")
+epca <- subset(epc, Date == as.Date("2007-02-01")|Date == as.Date("2007-02-02"))
+epca$Global_active_power <- as.numeric(as.character(epca$Global_active_power))
+png(filename = "plot1.png",width = 480, height = 480, units = "px")
+hist(epca$Global_active_power,col="red", main="Global Active Power",xlab = "Global Active Power (kilowatts)")
+dev.off()
